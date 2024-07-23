@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h2>Chuyển đổi đơn vị</h2>
+
+<div>
+    <h3>Chuyển đổi từ Feet sang Meters</h3>
+    <input type="number" id="footInput" placeholder="Nhập số feet">
+    <button onclick="convertFootToMeter()">Chuyển đổi</button>
+    <p id="footToMeterResult"></p>
+</div>
+<div>
+    <h3>Chuyển đổi từ Meters sang Feet</h3>
+    <input type="number" id="meterInput" placeholder="Nhập số meters">
+    <button onclick="convertMeterToFoot()">Chuyển đổi</button>
+    <p id="meterToFootResult"></p>
+</div>
+
+<h2>Kiểm tra số nguyên tố</h2>
+<button onclick="checkPrime()">Kiểm tra số nguyên tố</button>
+
+<script>
+    function footToMeter(foot) {
+        return 0.305 * foot;
+    }
+
+    function meterToFoot(meter) {
+        return 3.279 * meter;
+    }
+
+    function convertFootToMeter() {
+        const foot = parseFloat(document.getElementById('footInput').value);
+        const resultElement = document.getElementById('footToMeterResult');
+        if (isNaN(foot)) {
+            resultElement.textContent = "Vui lòng nhập một số feet hợp lệ.";
+            return;
+        }
+        const meter = footToMeter(foot);
+        resultElement.textContent = `${foot} feet bằng ${meter.toFixed(3)} meters.`;
+    }
+
+    function convertMeterToFoot() {
+        const meter = parseFloat(document.getElementById('meterInput').value);
+        const resultElement = document.getElementById('meterToFootResult');
+        if (isNaN(meter)) {
+            resultElement.textContent = "Vui lòng nhập một số meters hợp lệ.";
+            return;
+        }
+        const foot = meterToFoot(meter);
+        resultElement.textContent = `${meter} meters bằng ${foot.toFixed(3)} feet.`;
+    }
+
+    function checkPrime() {
+        let number = parseInt(prompt("Nhập số cần kiểm tra:"));
+        isPrime(number);
+    }
+
+    function isPrime(number) {
+        let count = 0; // đếm số ước của số đang check
+        let isPrime = false;
+
+        if (number === 0) {
+            document.write(number + " không là số nguyên tố");
+        } else {
+            for (let i = 1; i <= number; i++) {
+                if (number % i === 0) {
+                    count += 1;
+                }
+            }
+
+            if (count === 2) {
+                isPrime = true;
+            }
+
+            if (isPrime) {
+                document.write(number + " là số nguyên tố");
+            } else {
+                document.write(number + " không là số nguyên tố");
+            }
+        }
+    }
+</script>
+</body>
+</html>
